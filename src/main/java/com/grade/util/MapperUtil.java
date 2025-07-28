@@ -1,10 +1,8 @@
 package com.grade.util;
 
 import com.grade.dto.CritereEligibiliteDTO;
-import com.grade.dto.GradeDTO;
 import com.grade.dto.UtilisateurDTO;
 import com.grade.model.CritereEligibilite;
-import com.grade.model.Grade;
 import com.grade.model.Utilisateur;
 import com.grade.dto.DemandeDTO;
 import com.grade.model.Demande;
@@ -32,15 +30,6 @@ public class MapperUtil {
                 demande.getFichier(),
                 demande.getEtat().toString(),
                 demande.getDateSoumission()
-        );
-    }
-    public static GradeDTO toGradeDTO(Grade grade) {
-        return new GradeDTO(
-                grade.getId(),
-                grade.getNom(),
-                grade.getUtilisateurs() != null ? grade.getUtilisateurs().stream()
-                        .map(Utilisateur::getId)
-                        .collect(Collectors.toList()) : null
         );
     }
 

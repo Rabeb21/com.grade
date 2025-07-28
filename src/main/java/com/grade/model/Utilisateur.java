@@ -26,8 +26,6 @@ public class Utilisateur {
     @Column(nullable = false)
     private Role role;
 
-    @ManyToOne
-    private Grade grade;
 
     @OneToMany(mappedBy = "utilisateur", cascade = CascadeType.ALL)
     private List<Demande> demandes; // liste demande soumis par user
@@ -57,6 +55,5 @@ public class Utilisateur {
     public Role getRole() { return role; }
     public void setRole(Role role) { this.role = role; }
 
-    public Grade getGrade() { return grade; }
-    public void setGrade(Grade grade) { this.grade = grade; }
+
 }
