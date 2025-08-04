@@ -16,9 +16,10 @@ import org.springframework.context.annotation.Configuration;
         )
 )
 @SecurityScheme(
-        name = "basicAuth",
+        name = "bearerAuth",
         type = io.swagger.v3.oas.annotations.enums.SecuritySchemeType.HTTP,
-        scheme = "basic"
+        scheme = "bearer",
+        bearerFormat = "JWT"
 )
 public class OpenApiConfig {
 }

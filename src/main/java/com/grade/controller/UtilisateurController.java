@@ -4,6 +4,7 @@ import com.grade.dto.UtilisateurCreateDTO;
 import com.grade.dto.UtilisateurDTO;
 import com.grade.service.UtilisateurService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -11,25 +12,30 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/utilisateurs")
 public class UtilisateurController {
+
     @Autowired
     private UtilisateurService utilisateurService;
 
     @GetMapping
+    @PreAuthorize("hasAnyRole('EMPLOYE', 'RH', 'ADMIN')")
     public List<UtilisateurDTO> getAllUtilisateurs() {
         return utilisateurService.getAllUtilisateurs();
     }
 
     @GetMapping("/{id}")
+    @PreAuthorize("hasAnyRole('EMPLOYE', 'RH', 'ADMIN')")
     public UtilisateurDTO getUtilisateurById(@PathVariable Long id) {
         return utilisateurService.getUtilisateurById(id);
     }
 
     @PostMapping
+    @PreAuthorize("hasRole('ADMIN')")
     public UtilisateurDTO createUtilisateur(@RequestBody UtilisateurCreateDTO utilisateurCreateDTO) {
         return utilisateurService.createUtilisateur(utilisateurCreateDTO);
     }
 
     @DeleteMapping("/{id}")
+    @PreAuthorize("hasRole('ADMIN')")
     public void deleteUtilisateur(@PathVariable Long id) {
         utilisateurService.deleteUtilisateur(id);
     }
